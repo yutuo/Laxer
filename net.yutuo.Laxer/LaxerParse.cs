@@ -9,7 +9,9 @@ using net.yutuo.Laxer.Entities.Common;
 
 namespace net.yutuo.Laxer
 {
-
+    /// <summary>
+    /// 转换类
+    /// </summary>
     public class LaxerParse
     {
         private TextReader reader;
@@ -17,11 +19,21 @@ namespace net.yutuo.Laxer
         private int col;
         private StringBuilder originalValue = new StringBuilder();
 
+        /// <summary>
+        /// 转换字符串
+        /// </summary>
+        /// <param name="value">字符串值</param>
+        /// <returns>转换结果</returns>
         public Node Parse(string value)
         {
             return this.Parse(new StringReader(value));
         }
 
+        /// <summary>
+        /// 转换Reader
+        /// </summary>
+        /// <param name="reader">Reader</param>
+        /// <returns>转换结果</returns>
         public Node Parse(TextReader reader)
         {
             this.reader = reader;
@@ -31,6 +43,10 @@ namespace net.yutuo.Laxer
             return this.rootNode;
         }
 
+        /// <summary>
+        /// 下一个值
+        /// </summary>
+        /// <returns></returns>
         private int Next()
         {
             int nextCharInt;
@@ -105,6 +121,10 @@ namespace net.yutuo.Laxer
             return 0;
         }
 
+        /// <summary>
+        /// 添加到Node
+        /// </summary>
+        /// <param name="node">需要添加的Node</param>
         private void AddToNode(Node node)
         {
             if (this.rootNode == null)
@@ -122,7 +142,9 @@ namespace net.yutuo.Laxer
             }
         }
 
-
+        /// <summary>
+        /// 设置括号完成
+        /// </summary>
         private void SetBracketEnd()
         {
             if (this.rootNode == null || this.rootNode.IsComplete)
